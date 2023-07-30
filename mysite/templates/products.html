@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products page</title>
+</head>
+<body>
+    {% load static %}
+    {{ MEDIA_URL }}
+    <h1>Products Page here</h1>
+    <p>{{num_of_products}} products found for <strong>{{search}}</strong></p>
+    <img>{% for product in products %}
+        <p>{{product.pk}}</p>
+        <p>{{product.prod_name}}</p>
+        <img src="{{ product.prod_image }}" alt="">
+
+        {% endfor %}
+
+    </div>
+</body>
+</html>
