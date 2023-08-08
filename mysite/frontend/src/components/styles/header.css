@@ -1,0 +1,49 @@
+
+#header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    padding: 0 18px;
+}
+#logo{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 38px;
+}
+#header > span{
+    padding: 12px;
+}
+#header-nav{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    right: 18px;
+}
+#header-nav > span{
+    padding: 8px 12px;
+}
+#header-nav > form{
+    display: flex;
+    border: 2px solid grey;
+    background-color: #dfecff;
+    border-radius: 100px;
+}
+
+#header-search > .icon{
+    padding: 6px;
+    
+}
+#header-search > input{
+    border: none;
+    outline: none;
+    padding: 6px;
+    border-radius: 100px;
+    background-color: #dfecff;
+}
+#header-search > a > button{
+    display: none;
+}

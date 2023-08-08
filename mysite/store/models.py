@@ -38,13 +38,13 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str((f'[{self.pk}] {self.name} '))
+        return self.name
 
 class Product(models.Model):
     prod_name = models.CharField(max_length=300)
     prod_desc = models.TextField()
     prod_price = models.DecimalField(max_digits=10, decimal_places=2)
-    prod_image = models.ImageField(upload_to='products/')
+    prod_image = models.ImageField()
     category = models.ManyToManyField(Category)
 
     def pricing(self):

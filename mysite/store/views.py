@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from rest_framework.parsers import JSONParser
 
 from .models import *
 from django.contrib.auth import authenticate, login, logout
@@ -7,7 +8,47 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets, generics, filters
+from store.serializers import ProductSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from django.views.decorators.csrf import csrf_exempt
+
+from .filters import ProductFilter
+from .serializers import ProductSerializer
+
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+class ProductView(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    def get_queryset(self):
+        input = self.request.query_params.get('search')
+        if input is not None:
+            query = self.queryset.filter(prod_name__contains=input)
+        return query
+        
+
+class ProductList(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
+    # filter_backends = [filters.SearchFilter]
+    # filterset_class = ProductFilter
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        input = self.request.query_params.get('search')
+        if input is not None:
+            queryset = queryset.filter(product__prod_name=input)
+        return queryset
+
+
+class ProductSearchFilter():
+    pass
 # Create your views here.
+
+def index(request):
+    context = {}
+    return render(request, 'index.html', context)
 
 def home(request):
     #to display the home page
@@ -73,7 +114,7 @@ def signup(request):
 def products(request):
     #fetch out the products from the database with the filter
     search_product = request.GET['product']
-    products_list = Product.objects.filter(prod_name__contains=str(search_product))
+    products_list = Product.objects.filter(prod_name__contains=search_product)
     products_list = list(products_list)
     if len(products_list)!=0:
         #counts the number of products found in the database

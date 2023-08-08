@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/home.css">    
     <title>Home Page</title>
 </head>
 <body>
@@ -11,11 +12,24 @@
             alert("{% for msg in messages %}{{msg}}{% endfor %}");
         }
     </script>
+    <div id="header">
+            <span id="logo">Store</span>
+        <div id="header-nav">
+            <form action="search_product" method="get" id="search-input">
+                <FontAwesome icon={faSearch}/>
+                <input type="text" className="search" placeholder="Search.."></input>
+            </form>
+            <span className="header-nav-btn"><a href="?" onClick={openCart()}>Cart</a></span>
+            <span className="header-nav-btn"><FontAwesome icon={faUser}/>Profile</span>
+        </div>
+    </div>
+
+
     <h1>Home page here</h1>
     <h1>{{user.username}}</h1>
 
     <ul>
-        <li><a href='products'>go to products</a></li>
+        <li><a href='products.html'>go to products</a></li>
         <li><a href='user_logout'>logout</a></li>
     </ul>
     <h2>Sign In</h2>
