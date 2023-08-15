@@ -22,11 +22,14 @@ from store import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'products', views.ProductView)
+router.register(r'product', views.ProductView)
+router.register(r'products', views.ProductList)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name="frontend for store"),
     path('store/',include("store.urls")),
     path('api/',include(router.urls)),
+    path('api/product/<int:pk>/',views.ProductView.as_view({'get': 'list'}),name='product search'),
+    path('api/products/',views.ProductList.as_view({'get': 'list'}),name='product search'),
 ]

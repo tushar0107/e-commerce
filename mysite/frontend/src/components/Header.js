@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import SearchResults from './SearchResults';
 import './styles/header.css';
+import ProductPage from "./ProductPage";
+import Home from "./Home";
 
 export default function Header(){
     const [inputText, setInputText] = useState("")
@@ -20,13 +22,14 @@ export default function Header(){
                 <span id="logo">Store</span>
                 <span className="categorys">Clothing</span>
                 <span className="categorys">Fashion</span>
+                <span className="categorys">Electronics</span>
                 <div id="header-nav">
                     
                     <form action="searc_product" method="get" id="header-search">
                         
                         <FontAwesomeIcon icon={faSearch} className="icon"/>
-                        <input type="text" id="search" placeholder="Search.." onChange={handleChange} value={inputText} name="search"></input>
-                            <Link to="/search"><button type="submit" ></button></Link>
+                        <input type="text" id="search" placeholder="Search.." onChange={handleChange} value={inputText} name="search" required></input>
+                        <Link to="/search"><button type="submit" ></button></Link>
                     </form>
                     
                    
@@ -35,7 +38,9 @@ export default function Header(){
                 </div>
             </div>
             <Routes>
-                <Route exact path='/search' element={< SearchResults url={'http://127.0.0.1:8000/api/products/?search='+inputText} />}></Route>
+                <Route path='/' element={< Home />}></Route>
+                <Route exact path='/search/*' element={< SearchResults  inputText={inputText}/>}></Route>
+                <Route exact path='/product/:id' element={< ProductPage />}></Route> 
             </Routes>
         </Router>
         </>

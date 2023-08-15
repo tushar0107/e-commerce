@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
-from rest_framework.parsers import JSONParser
 
 from .models import *
 from django.contrib.auth import authenticate, login, logout
@@ -8,42 +6,54 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, generics, filters
+from rest_framework import viewsets
 from store.serializers import ProductSerializer
-from django_filters.rest_framework import DjangoFilterBackend
-from django.views.decorators.csrf import csrf_exempt
 
-from .filters import ProductFilter
-from .serializers import ProductSerializer
 
-from rest_framework.decorators import action
-from rest_framework.response import Response
+#class based view to search for products 
+# based on parameters "product name", "product desc" and "product category"
+class ProductList(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    
+    def get_queryset(self):
+        search_product = self.request.query_params.get('search')
+        order = self.request.query_params.get('order')
+        category = self.request.query_params.get('category')
+        queryset1 = Product.objects.filter(name__icontains=search_product)
+        queryset2 = Product.objects.filter(desc__icontains=search_product)
+        #searches for products only if order and category parameter is passed
+        if order is not None:
+            #if "order" parameter has some value ('price' or 'desc') this searches within category
+            #and returns the union of both query sets
+            if category is not None:
+                queryset3 = Product.objects.filter(category=category)
+                return queryset1.union(queryset2).union(queryset3).order_by(order)
+            return queryset1.union(queryset2).order_by(order)
+        
+        #if 'order' parameter is not passed but 'category is passed
+        elif category is not None:
+            queryset3 = Product.objects.filter(category=category)
+            return queryset1.union(queryset3).order_by("price")
+        
+        #to search products with only categories or if 'search parameter is not passed
+        elif search_product is None:
+            return queryset3
+        
+        #if 'category' parameter is not passed
+        else:
+            return queryset1.union(queryset2)
 
+#class based view to get product by "id"
 class ProductView(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    def get_queryset(self):
-        input = self.request.query_params.get('search')
-        if input is not None:
-            query = self.queryset.filter(prod_name__contains=input)
-        return query
+    def get(self):
+        pk = self.request.query_params.get('pk')
+        product = Product.objects.get(id=pk)
+        return product
         
 
-class ProductList(viewsets.ModelViewSet):
-    serializer_class = ProductSerializer
-    # filter_backends = [filters.SearchFilter]
-    # filterset_class = ProductFilter
-    def get_queryset(self):
-        queryset = Product.objects.all()
-        input = self.request.query_params.get('search')
-        if input is not None:
-            queryset = queryset.filter(product__prod_name=input)
-        return queryset
-
-
-class ProductSearchFilter():
-    pass
 # Create your views here.
 
 def index(request):

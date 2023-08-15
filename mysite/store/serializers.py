@@ -14,10 +14,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = [ 'url', 'name' ]
 
 class ProductSerializer(serializers.ModelSerializer):
-
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model = Product
-        # fields = ['pk', 'prod_name','prod_desc','prod_price', 'prod_image','category']
         fields = '__all__'
-    
+    def get_image_url(self, Product):
+        if Product.image:
+            return Product.image.url
+        return None
     

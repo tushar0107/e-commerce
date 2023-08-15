@@ -41,17 +41,15 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    prod_name = models.CharField(max_length=300)
-    prod_desc = models.TextField()
-    prod_price = models.DecimalField(max_digits=10, decimal_places=2)
-    prod_image = models.ImageField()
+    name = models.CharField(max_length=300,default='')
+    desc = models.TextField()
+    brand = models.CharField(max_length=30,default='none')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to='products/', default='')
     category = models.ManyToManyField(Category)
 
-    def pricing(self):
-        return str(self.prod_price)
-
     def __str__(self) -> str:
-        return str(f'[{self.pk}] {self.prod_name}')
+        return str(f'[{self.pk}] {self.name}')
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
