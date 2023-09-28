@@ -1,7 +1,6 @@
 import React from "react";
 import './styles/product.css';
 import './styles/home.css';
-import './styles/product.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 

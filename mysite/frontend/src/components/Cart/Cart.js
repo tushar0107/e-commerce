@@ -1,24 +1,31 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import '../styles/product.css';
 
-export default function SearchResults() {
-  const { searchText } = useParams();
+const Cart = () => {
+  let products = [];
   const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-
+  let CartList = {};
   useEffect(() => {
-    const loadProducts = async () => {
-      await axios
-        .get(`http://127.0.0.1:8000/api/products/?search=${searchText}`)
-        .then((res) => {
-          setProducts(res.data);
+    if (localStorage.getItem("Cart") !== null) {
+      CartList = JSON.parse(localStorage.getItem("Cart"));
+      console.log(CartList);
+      for (let id in CartList) {
+        axios
+          .get(`http://127.0.0.1:8000/api/product/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            products.push(res.data);
+            console.log(products.length);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
           setLoading(false);
-        });
-    };
-    loadProducts();
-  }, [searchText]);
+      }
+    }
+  });
 
   function AddToCart(id) {
     let CartList = {};
@@ -33,12 +40,6 @@ export default function SearchResults() {
     }else{
         CartList[`${id}`]+=1;
     }
-
-
-    console.log(CartList);
-    localStorage.setItem("Cart", JSON.stringify(CartList));
-
-    
   }
 
   return (
@@ -79,4 +80,6 @@ export default function SearchResults() {
       </div>
     </>
   );
-}
+};
+
+export default Cart;

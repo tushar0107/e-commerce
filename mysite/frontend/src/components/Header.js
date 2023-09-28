@@ -32,7 +32,7 @@ export default function Header(){
                     </form>
                     
                    
-                    <span className="header-nav-btn"><a href="?" >Cart</a></span>
+                    <span className="header-nav-btn"><Link to={"/cart"}>Cart</Link></span>
                     <span className="header-nav-btn"><Link to={"/user"}><FontAwesomeIcon icon={faUser}/></Link></span>
                 </div>
             </div>

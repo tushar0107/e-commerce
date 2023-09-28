@@ -20,6 +20,8 @@
     box-shadow: 0 0 8px #c9c9c9;
     border-radius: 8px;
     font-size: 14px;
+    text-decoration: none;
+    color: black;
 }
 
 .product-card > img{
@@ -53,3 +55,27 @@ button:hover{
     cursor: pointer;
 }
 
+/* product page */
+
+#item-page-container{
+    width: 100%;
+    padding: 1rem;
+}
+
+#item-image-container > img{
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    margin: 1rem auto;
+    border: 1px solid red;
+    border-radius: 12px;
+}
+#item-price > p{
+    font-size: 2rem;
+}
+#item-description {
+    margin: 2rem auto; 
+    height: 100px;
+    overflow-x: hidden;
+}

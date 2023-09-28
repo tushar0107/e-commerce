@@ -4,7 +4,7 @@ import Home from "../Home";
 import SearchResults from "../SearchResults";
 import ProductPage from "../ProductPage";
 import Profile from "../Profile";
-import Header from "../Header";
+import Cart from "../Cart/Cart";
 
 export default function Routings() {
   return (
@@ -18,6 +18,7 @@ export default function Routings() {
         ></Route>
         <Route exact path="/product/:id" element={<ProductPage />}></Route>
         <Route exact path="/user" element={<Profile />}></Route>
+        <Route exact path="/cart" element={<Cart />}></Route>
       </Routes>
     </>
   );
