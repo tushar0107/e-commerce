@@ -26,7 +26,7 @@
 #header-nav > span{
     padding: 8px 12px;
 }
-#header-nav > form{
+#header-nav > #header-search {
     display: flex;
     border: 2px solid grey;
     background-color: #dfecff;

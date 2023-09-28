@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './styles/header.css';
-import axios from "axios";
 
 export default function Header(){
     const [inputText, setInputText] = useState("")
@@ -24,12 +23,12 @@ export default function Header(){
                 <span className="categorys">Electronics</span>
                 <div id="header-nav">
                     
-                    <form action="searc_product" method="get" id="header-search">
+                    <div id="header-search">
                         
                         <FontAwesomeIcon icon={faSearch} className="icon"/>
                         <input type="text" id="search" placeholder="Search.." onChange={handleChange} value={inputText} name="search" required></input>
                         <Link to={`/search/${inputText}`}><button type="submit" ></button></Link>
-                    </form>
+                    </div>
                     
                    
                     <span className="header-nav-btn"><Link to={"/cart"}>Cart</Link></span>

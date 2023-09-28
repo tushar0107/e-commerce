@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
-import CartList from "./Cart/CartList";
-
 
 export default function ProductPage(){
     const { id } = useParams();

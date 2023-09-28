@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchResults() {
   const { searchText } = useParams();
@@ -69,7 +70,7 @@ export default function SearchResults() {
                       Add to Cart
                     </button>
                     <button>Buy</button>
-                    {/* <i><FontAwesomeIcon icon={faHeart}/></i> */}
+                    <i><FontAwesomeIcon icon={faHeart}/></i>
                   </div>
                 </div>
               </Link>
