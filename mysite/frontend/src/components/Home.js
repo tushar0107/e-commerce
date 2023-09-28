@@ -5,7 +5,7 @@ import './styles/product.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-export default function Home(){
+const Home = ()=>{
 
     return(
         <>
@@ -96,4 +96,6 @@ export default function Home(){
         
         </>
     )
-}
+};
+
+export default Home;

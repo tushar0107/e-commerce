@@ -1,17 +1,22 @@
 from django.contrib.auth.models import User, Group
-from store.models import Product
+from store.models import Product, Customer
 from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'first_name', 'last_nanme', 'email', 'groups' ]
+        fields = ['url', 'username', 'first_name', 'last_name', 'email', 'groups' ]
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = [ 'url', 'name' ]
+
+class CustomerSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Customer
+        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()

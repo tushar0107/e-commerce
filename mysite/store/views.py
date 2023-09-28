@@ -6,8 +6,19 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny
+
 from rest_framework import viewsets
+from rest_framework.views import APIView
 from store.serializers import ProductSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+
+from django.http import JsonResponse
+from django.middleware import csrf
+
 
 
 #class based view to search for products 
@@ -52,7 +63,54 @@ class ProductView(viewsets.ModelViewSet):
         pk = self.request.query_params.get('pk')
         product = Product.objects.get(id=pk)
         return product
-        
+    
+
+def get_csrf_token(request):
+    csrf_token = csrf.get_token(request)
+    return JsonResponse({'csrfToken': csrf_token})
+
+class CustomAuthToken(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        print(request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email
+        })
+
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None):
+        print(request.user)
+        # user = User.objects.get(request.user)
+        content = {'user': str(request.user),
+                   'auth': str(request.auth),
+                }
+        return Response(content)
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({
+                'token': token.key,
+                'username': user.get_username(),
+                'id': user.pk,
+                })
+        else:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 # Create your views here.
 

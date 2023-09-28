@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
-    'store'
+    'store',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin for development
+# In production, you should specify the allowed origins explicitly, e.g.:
+# CORS_ALLOWED_ORIGINS = [
+#     'https://your-frontend-app.com',
+# ]
+
 
 ROOT_URLCONF = 'mysite.urls'
 

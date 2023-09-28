@@ -30,6 +30,7 @@ urlpatterns = [
     path('',views.index, name="frontend for store"),
     path('store/',include("store.urls")),
     path('api/',include(router.urls)),
-    path('api/product/<int:pk>/',views.ProductView.as_view({'get': 'list'}),name='product search'),
-    path('api/products/',views.ProductList.as_view({'get': 'list'}),name='product search'),
+    path('get-csrf-token/', views.get_csrf_token, name='get-csrf-token'),
+    path('api/login/', views.LoginView.as_view(),name="login"),
+    path('api-token-auth/', views.CustomAuthToken.as_view()),
 ]
