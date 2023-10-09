@@ -53,6 +53,8 @@ class Product(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30, default='')
+    last_name = models.CharField(max_length=30, default='')
     phone = models.IntegerField()
     streetaddr = models.TextField()
     city = models.CharField(max_length=20, choices=CITIES)

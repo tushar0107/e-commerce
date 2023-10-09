@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProductPage(){
     const { id } = useParams();
@@ -48,12 +50,13 @@ export default function ProductPage(){
                 <div id="item-price">
                     <p>{product.price}/-</p>
                 </div>
-                <div id="item-description">
-                    <p>{product.desc}</p>
+                <div id="item-name">
+                    <h3>{product.name}</h3>
                 </div>
                 <div id="item-action-btns">
                     <button onClick={()=>AddToCart(product.id)}>Add To Cart</button>
                     <button>Buy</button>
+                    <button className="like-btn"><FontAwesomeIcon icon={faHeart}/></button>
                 </div>
 
             </div>

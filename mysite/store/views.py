@@ -104,13 +104,22 @@ class LoginView(APIView):
         if user is not None:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
+            customer = Customer.objects.get(pk=user.pk)
             return Response({
+                'user_status': 'logged_in',
                 'token': token.key,
-                'username': user.get_username(),
                 'id': user.pk,
+                'username': user.get_username(),
+                'name': customer.first_name + ' ' + customer.last_name,
+                'phone': customer.phone,
+                'address': customer.streetaddr,
+                'city': customer.city,
+                'pincode': customer.pincode
                 })
         else:
-            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({
+                'user_status': 'anonymous',
+                'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 # Create your views here.
 

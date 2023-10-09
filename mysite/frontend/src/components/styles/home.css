@@ -99,7 +99,7 @@
 }
 .collection-card img{
   display: block;
-  width: inherit;
+  width: 100%;
   height: 180px;
   transition: .3s ease;
 }
@@ -114,7 +114,7 @@
   background-image: linear-gradient(to top, #00000077,#00000000);
   color: #ffffff;
 }
-.collection-card:hover img{
+.collection-card:hover .collection-card > img{
   transform: scale(1.2);
 }
 

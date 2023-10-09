@@ -6,6 +6,7 @@
     align-items: center;
     position: sticky;
     top: 0;
+    z-index: 1000;
     background-color: #ffffff;
     padding: 0 18px;
 }
@@ -28,24 +29,30 @@
 }
 #header-nav > #header-search {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
     border: 2px solid grey;
     background-color: #dfecff;
     border-radius: 100px;
 }
 
-#header-search > .icon{
-    padding: 6px;
-    
-}
-#header-search > input{
-    border: none;
+#header-search> input{
+    display: block;
+    margin: 0 1rem;
     outline: none;
-    padding: 6px;
-    border-radius: 100px;
-    background-color: #dfecff;
+    border: none;
+    background-color: transparent;
 }
-#header-search > a > button{
-    display: none;
+#header-search .search-btn{
+    border: 1px solid red;
+    display: block;
+    margin: .5rem auto;
+    color: black;
+    background-color: transparent;
+}
+.search-btn:hover{
+    background-color: aliceblue;
 }
 
 

@@ -58,24 +58,39 @@ button:hover{
 /* product page */
 
 #item-page-container{
-    width: 100%;
-    padding: 1rem;
+    width: 90%;
+    margin: 1rem auto;
 }
 
 #item-image-container > img{
     display: block;
-    width: 100%;
+    width: 90%;
+    margin: 2rem auto;
     height: auto;
+    overflow: hidden;
     aspect-ratio: 1/1;
-    margin: 1rem auto;
     border: 1px solid red;
     border-radius: 12px;
 }
 #item-price > p{
     font-size: 2rem;
 }
-#item-description {
+#item-name {
     margin: 2rem auto; 
-    height: 100px;
-    overflow-x: hidden;
+}
+#item-action-btns{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2rem;
+}
+#item-action-btns button{
+    
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+.like-btn{
 }

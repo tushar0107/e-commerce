@@ -14,33 +14,33 @@ const Cart = () => {
         axios
           .get(`http://127.0.0.1:8000/api/product/${id}`)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             productList.push(res.data);
-            console.log(products.length);
           })
           .catch((err) => {
             console.log(err);
           });
         }
       }
-    setLoading(false);
+      setLoading(false);
     return productList;
   },[]);
+  console.log(products);
 
-  function AddToCart(id) {
-    let CartList = {};
+  // function AddToCart(id) {
+  //   let CartList = {};
     
-    if (localStorage.getItem("Cart") === null) {
-      localStorage.setItem("Cart", JSON.stringify(CartList));
-    } else {
-      CartList = JSON.parse(localStorage.getItem("Cart"));
-    }
-    if(isNaN(CartList[`${id}`])){
-        CartList[`${id}`]=1;
-    }else{
-        CartList[`${id}`]+=1;
-    }
-  }
+  //   if (localStorage.getItem("Cart") === null) {
+  //     localStorage.setItem("Cart", JSON.stringify(CartList));
+  //   } else {
+  //     CartList = JSON.parse(localStorage.getItem("Cart"));
+  //   }
+  //   if(isNaN(CartList[`${id}`])){
+  //       CartList[`${id}`]=1;
+  //   }else{
+  //       CartList[`${id}`]+=1;
+  //   }
+  // }
 
   return (
     <>
@@ -64,9 +64,6 @@ const Cart = () => {
                   <p className="product-brand">{product.brand}</p>
                   <span>₹ {product.price} /-</span>
                   <div className="btns">
-                    <button onClick={() => AddToCart(product.id)}>
-                      Add to Cart
-                    </button>
                     <button>Buy</button>
                     {/* <i><FontAwesomeIcon icon={faHeart}/></i> */}
                   </div>
