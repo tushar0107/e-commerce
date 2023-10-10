@@ -3,9 +3,21 @@ import axios from "axios";
 import "./styles/profile.css";
 
 export default function Profile() {
-  const [username, setUsername] = useState("tushar");
+  //for user authentication
+  const [username, setUsername] = useState("yash");
   const [password, setpassword] = useState("111111");
+  const [email, setEmail] = useState("yash@gmail.com");
+  const [phone, setPhone] = useState(9876543210);
+  const [firstname, setFirstname] = useState("Yash");
+  const [lastname, setLastname] = useState("Dhirde");
+  const [address, setAddress] = useState("Manewada");
+  const [pincode, setPincode] = useState(440034);
+  const [city, setCity] = useState("Nagpur");
+  
+  //set user details after login
   const [user, setUser] = useState({});
+
+  // for animation login module
   const [showProfile, setShowProfile] = useState('none');
   const [showAuth, setShowAuth] = useState('block')
   const [activeLogin, setActiveLogin] = useState({
@@ -24,7 +36,25 @@ export default function Profile() {
   const handlepassword = (e) => {
     setpassword(e.target.value);
   };
+  const handleemail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlephone = (e) => {
+    setPhone(e.target.value);
+  };
+  const handlefirstname = (e) =>{
+    setFirstname(e.target.value);
+  };
+  const handleaddress = (e) =>{
+    setAddress(e.target.value);
+  };
+  const handlecity = (e) =>{
+    setCity(e.target.value);
+  };const handlepincode = (e) =>{
+    setPincode(e.target.value);
+  };
 
+  // sets userdetails to localstorage if already logged in
   useEffect(() => {
     
     if(localStorage.getItem('user') !== null){
@@ -36,6 +66,7 @@ export default function Profile() {
     }
   },[]);
 
+  // login function
   const handleLogin = () => {
     var csrfToken='';
     axios
@@ -66,6 +97,66 @@ export default function Profile() {
           })
       );
   };
+
+  // registration function
+  const handleSignUp = () =>{
+    var csrfToken='';
+    axios
+      .get("http://127.0.0.1:8000/get-csrf-token/")
+      .then((res) => {
+        csrfToken = res.data.csrfToken;
+      })
+      .then(
+        axios
+          .post(
+            "http://127.0.0.1:8000/api/register/",
+            {
+              username: username,
+              password: password,
+            },
+            { "Content-Type": "application/json", "X-CSRFToken": csrfToken }
+          )
+          .then((res) => {
+            console.log(res.data);
+            localStorage.setItem('user',JSON.stringify(res.data));
+          }).then(()=>{
+            setUser(JSON.parse(localStorage.getItem('user')));
+            setShowProfile('block');
+            setShowAuth('none');
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      )
+  };
+
+  //adding more user details to the user (creating a customer model in the backend)
+  const updateUser = ()=>{
+    axios.post(
+            "http://127.0.0.1:8000/api/create-customer/",
+            {
+              username: user.username,
+              password: password,
+              first_name: firstname,
+              last_name: lastname,
+              streetaddr: address,
+              city: city,
+              pincode: pincode,
+            },
+            { "Content-Type": "application/json", "X-CSRFToken": user.csrfToken }
+          )
+          .then((res) => {
+            console.log(res.data);
+            localStorage.setItem('user',JSON.stringify(res.data));
+          }).then(()=>{
+            setUser(JSON.parse(localStorage.getItem('user')));
+            setShowProfile('block');
+            setShowAuth('none');
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+  }
 
   return (
     <>
@@ -157,18 +248,19 @@ export default function Profile() {
             placeholder="Enter Username"
             className="username"
           ></input>
-          <input
+          {/* <input
             type="email"
             placeholder="Enter email-id"
+            onChange={handleemail}
             className="email"
-          ></input>
+          ></input> */}
           <input
             type="password"
             placeholder="Password"
             onChange={handlepassword}
             value={password}
           ></input>
-          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleSignUp}>Login</button>
         </div>
       </div>
     </>

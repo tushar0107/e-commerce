@@ -103,23 +103,113 @@ class LoginView(APIView):
 
         if user is not None:
             login(request, user)
+            user = User.objects.get(username=username)
             token, created = Token.objects.get_or_create(user=user)
-            customer = Customer.objects.get(pk=user.pk)
             return Response({
                 'user_status': 'logged_in',
                 'token': token.key,
                 'id': user.pk,
-                'username': user.get_username(),
-                'name': customer.first_name + ' ' + customer.last_name,
-                'phone': customer.phone,
-                'address': customer.streetaddr,
-                'city': customer.city,
-                'pincode': customer.pincode
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name':user.last_name,
                 })
         else:
             return Response({
                 'user_status': 'anonymous',
                 'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+    def customer_details(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if Customer.objects.filter(pk=user.pk):
+                customer = Customer.objects.get(pk=user.pk)
+                return Response({
+                    'phone': customer.phone,
+                    'address': customer.streetaddr,
+                    'city': customer.city,
+                    'pincode': customer.pincode
+                })
+            else:
+                return Response({
+                    'message': 'You have not added more details about yourself'
+                })
+
+class RegisterUser(APIView):
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if User.objects.filter(username=username).exists():
+            return Response({
+                'message': 'Please Try with a different Username.'
+            })
+        else:
+            user = User.objects.create_user(
+                username = username,
+                password = password,
+            )
+            user.save()
+            login(request, user)
+            token = Token.objects.create(user=user)
+            return Response({
+                'message': 'User Registered',
+                'id': user.pk,
+                'token': token.key,
+                'username': user.username,
+            })
+    
+    def create_customer(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        first_name = request.data.get('first_name')
+        last_name = request.data.get('last_name')
+        email = request.data.get('email')
+        mobile = request.data.get('mobile')
+        streetaddr = request.data.get('address')
+        pincode = request.data.get('pincode')
+        city = request.data.get('city')
+
+        user = authenticate(request, username=username, password=password)
+        if Customer.objects.filter(phone=mobile).exists():
+                return Response({
+                    'message': 'This mobile number is already registered'
+                })
+        elif User.objects.filter(email=email).exists():
+            return Response({
+                'message': 'Please try with a different email-id.'
+            })
+        else:
+            user = User.objects.get(username=username)
+            user.email = email
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+            customer = Customer.objects.create(
+                pk = user.pk,
+                streetaddr = streetaddr,
+                phone = mobile,
+                city = city,
+                pincode = pincode,
+            )
+            login(request, user)
+            return Response({
+                'message': 'User Registered',
+                'id': user.pk,
+                'username': user.username,
+                'first_name': customer.first_name,
+                'last_name': customer.last_name,
+                'email': user.email,
+                'mobile': customer.phone,
+                'streetaddr': customer.streetaddr,
+                'city': customer.city,
+                'pincode': customer.pincode
+            })
+
 
 # Create your views here.
 

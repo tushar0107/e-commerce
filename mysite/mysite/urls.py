@@ -33,4 +33,6 @@ urlpatterns = [
     path('get-csrf-token/', views.get_csrf_token, name='get-csrf-token'),
     path('api/login/', views.LoginView.as_view(),name="login"),
     path('api-token-auth/', views.CustomAuthToken.as_view()),
+    path('api/register/', views.RegisterUser.as_view(), name="user Registration"),
+    path('api/create-customer/', views.RegisterUser.as_view(), name="create-customer"),
 ]
