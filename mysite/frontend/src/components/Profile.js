@@ -4,15 +4,15 @@ import "./styles/profile.css";
 
 export default function Profile() {
   //for user authentication
-  const [username, setUsername] = useState("yash");
-  const [password, setpassword] = useState("111111");
-  const [email, setEmail] = useState("yash@gmail.com");
-  const [phone, setPhone] = useState(9876543210);
-  const [firstname, setFirstname] = useState("Yash");
-  const [lastname, setLastname] = useState("Dhirde");
-  const [address, setAddress] = useState("Manewada");
-  const [pincode, setPincode] = useState(440034);
-  const [city, setCity] = useState("Nagpur");
+  const [username, setUsername] = useState("");
+  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState();
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [address, setAddress] = useState("");
+  const [pincode, setPincode] = useState();
+  const [city, setCity] = useState("");
   
   //set user details after login
   const [user, setUser] = useState({});
@@ -70,14 +70,14 @@ export default function Profile() {
   const handleLogin = () => {
     var csrfToken='';
     axios
-      .get("http://127.0.0.1:8000/get-csrf-token/")
+      .get("https://172.31.20.2:8000/get-csrf-token/")
       .then((res) => {
         csrfToken = res.data.csrfToken;
       })
       .then(
         axios
           .post(
-            "http://127.0.0.1:8000/api/login/",
+            "https://172.31.20.2:8000/api/login/",
             {
               username: username,
               password: password,
@@ -102,14 +102,14 @@ export default function Profile() {
   const handleSignUp = () =>{
     var csrfToken='';
     axios
-      .get("http://127.0.0.1:8000/get-csrf-token/")
+      .get("https://172.31.20.2:8000/get-csrf-token/")
       .then((res) => {
         csrfToken = res.data.csrfToken;
       })
       .then(
         axios
           .post(
-            "http://127.0.0.1:8000/api/register/",
+            "https://172.31.20.2:8000/api/register/",
             {
               username: username,
               password: password,
@@ -133,7 +133,7 @@ export default function Profile() {
   //adding more user details to the user (creating a customer model in the backend)
   const updateUser = ()=>{
     axios.post(
-            "http://127.0.0.1:8000/api/create-customer/",
+            "https://172.31.20.2:8000/api/create-customer/",
             {
               username: user.username,
               password: password,
