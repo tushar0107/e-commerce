@@ -12,7 +12,7 @@ export default function SearchResults() {
   useEffect(() => {
     const loadProducts = async () => {
       await axios
-        .get(`http://127.0.0.1:8000/api/products/?search=${searchText}`)
+        .get(`https://172.31.20.2:8000/api/products/?search=${searchText}`)
         .then((res) => {
           setProducts(res.data);
           setLoading(false);
