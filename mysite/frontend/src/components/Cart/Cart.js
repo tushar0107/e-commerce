@@ -12,7 +12,7 @@ const Cart = () => {
       console.log(CartList);
       for (let id in CartList) {
         axios
-          .get(`http://127.0.0.1:8000/api/product/${id}`)
+          .get(`https://172.31.20.2:8000/api/product/${id}`)
           .then((res) => {
             // console.log(res.data);
             productList.push(res.data);
