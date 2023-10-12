@@ -8,7 +8,7 @@ export default function ProductPage(){
     const { id } = useParams();
     const [product, setProduct] = useState();
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/product/${id}`)
+        axios.get(`https://172.31.20.2:8000/api/product/${id}`)
             .then(response => {
                 setProduct(response.data);
             })
