@@ -62,6 +62,7 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin for development
 # In production, you should specify the allowed origins explicitly, e.g.:
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8100',
+    'https://e-commerce-eight-jet.vercel.app',
 ]
 
 
@@ -147,6 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'https://e-commerce-eight-jet.vercel.app',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',
