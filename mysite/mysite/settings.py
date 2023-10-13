@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-iw_o+n=88oro)^2qa4c@wr3sj_^h2o24lp5id96gbmpjrk*b8x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.65.20.224']
+ALLOWED_HOSTS = ['52.65.20.224', '127.0.0.1']
 
 
 # Application definition
@@ -61,8 +61,8 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin for development
 # In production, you should specify the allowed origins explicitly, e.g.:
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8100',
-    'https://e-commerce-eight-jet.vercel.app',
+    'http://localhost:3000',
+    'https://my-store-seven-xi.vercel.app',
 ]
 
 
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'frontend','build',)],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,9 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_FILES = '/products/'
+STATIC_FILES = '/templates/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates', 'static')]
 
 
 MEDIA_URL = '/media/'
@@ -148,7 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'https://e-commerce-eight-jet.vercel.app',
+    'https://my-store-seven-xi.vercel.app',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',

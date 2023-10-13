@@ -27,8 +27,7 @@ router.register(r'products', views.ProductList)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index, name="frontend for store"),
-    path('store/',include("store.urls")),
+    path('',include("store.urls")),
     path('api/',include(router.urls)),
     path('get-csrf-token/', views.get_csrf_token, name='get-csrf-token'),
     path('api/login/', views.LoginView.as_view(),name="login"),
