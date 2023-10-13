@@ -1,5 +1,6 @@
 # e-commerce
 This is basically a CRUD application built under Python and Django (with frontend using HTML & CSS).
+It uses DRF for Representational State transfer.
 
 Modules:
 
