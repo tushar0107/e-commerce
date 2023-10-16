@@ -1,5 +1,5 @@
-djangorestframework==3.14.2
-django-cors-headers==4.8.0
-django-filter==2.6.0
-djangorestframework-authtoken==2.0.2
-Pillow==9.0.0
+django-rest-framework
+django-cors-headers
+django-filter
+djangorestframework-authtoken
+Pillow
