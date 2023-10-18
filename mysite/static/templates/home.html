@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/home.css">    
+    <link rel="stylesheet" href="">    
     <title>Home Page</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <div id="header-nav">
             <form action="search_product" method="get" id="search-input">
                 <FontAwesome icon={faSearch}/>
-                <input type="text" className="search" placeholder="Search.."></input>
+                <input type="text" className="search" name="product" placeholder="Search.."></input>
             </form>
             <span className="header-nav-btn"><a href="?" onClick={openCart()}>Cart</a></span>
             <span className="header-nav-btn"><FontAwesome icon={faUser}/>Profile</span>
@@ -29,8 +29,9 @@
     <h1>{{user.username}}</h1>
 
     <ul>
-        <li><a href='products.html'>go to products</a></li>
+        <li><a href='products'>go to products</a></li>
         <li><a href='user_logout'>logout</a></li>
+        <li><a href=''>index</a></li>
     </ul>
     <h2>Sign In</h2>
     <form method="POST" action="user_login">

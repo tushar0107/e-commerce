@@ -219,7 +219,7 @@ def index(request):
 
 def home(request):
     #to display the home page
-    return render(request,'home.html')
+    return render(request,'../templates/home.html')
 
 
 @login_required(login_url="login/")
@@ -281,7 +281,7 @@ def signup(request):
 def products(request):
     #fetch out the products from the database with the filter
     search_product = request.GET['product']
-    products_list = Product.objects.filter(prod_name__contains=search_product)
+    products_list = Product.objects.filter(name__contains=search_product)
     products_list = list(products_list)
     if len(products_list)!=0:
         #counts the number of products found in the database

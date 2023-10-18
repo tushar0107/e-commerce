@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/product.css">
+    <link rel="stylesheet" href="/styles/product.css">
     <title>Products page</title>
 
     <script>
@@ -42,9 +42,9 @@
     <div id="products-container">
         <!-- {% for product in products %} -->
             <div class="product-card">
-                <img src="Fastrack_Limitless_FS1_Pro_Smart_Watch.jpg" class="product-image" alt="">
+                <img src="/media/products/Fastrack_Limitless_FS1_Pro_Smart_Watch.jpg" class="product-image" alt="">
                 <div class="product_details">
-                    <p class="product-name">product.prod_name</p>
+                    <p class="product-name">product.name</p>
                     <p class="product-brand">product brand</p>
                     <price>₹ XXX.XX /-</price>
                 </div>
@@ -52,9 +52,9 @@
                 <button>Buy</button>
             </div>
             <div class="product-card">
-                <img src="Fastrack_Limitless_FS1_Pro_Smart_Watch.jpg" class="product-image" alt="">
+                <img src="/media/products/Fastrack_Limitless_FS1_Pro_Smart_Watch.jpg" class="product-image" alt="">
                 <div class="product_details">
-                    <p class="product-name">product.prod_name</p>
+                    <p class="product-name">product.name</p>
                     <p class="product-brand">product brand</p>
                     <price>₹ XXX.XX /-</price>
                 </div>
@@ -62,9 +62,9 @@
                 <button>Buy</button>
             </div>
             <div class="product-card">
-                <img src="Fastrack_Analog_Unisex_Adult_Watch.jpg" class="product-image" alt="">
+                <img src="/media/products/Fastrack_Analog_Unisex_Adult_Watch.jpg" class="product-image" alt="">
                 <div class="product_details">
-                    <p class="product-name">product.prod_name</p>
+                    <p class="product-name">product.name</p>
                     <p class="product-brand">product brand</p>
                     <price>₹ XXX.XX /-</price>
                 </div>
@@ -72,9 +72,9 @@
                 <button>Buy</button>
             </div>
             <div class="product-card">
-                <img src="Fastrack_Limitless_FS1_Pro_Smart_Watch.jpg" class="product-image" alt="">
+                <img src="/media/products/Fastrack_Limitless_FS1_Pro_Smart_Watch.jpg" class="product-image" alt="">
                 <div class="product_details">
-                    <p class="product-name">product.prod_name</p>
+                    <p class="product-name">product.name</p>
                     <p class="product-brand">product brand</p>
                     <price>₹ XXX.XX /-</price>
                 </div>
@@ -82,9 +82,9 @@
                 <button>Buy</button>
             </div>
             <div class="product-card">
-                <img src="Fastrack_Analog_Unisex_Adult_Watch.jpg" class="product-image" alt="">
+                <img src="/media/products/Fastrack_Analog_Unisex_Adult_Watch.jpg" class="product-image" alt="">
                 <div class="product_details">
-                    <p class="product-name">product.prod_name</p>
+                    <p class="product-name">product.name</p>
                     <p class="product-brand">product brand</p>
                     <price>₹ XXX.XX /-</price>
                 </div>
@@ -93,9 +93,9 @@
 
             </div>
             <div class="product-card">
-                <img src="Fastrack_Analog_Unisex_Adult_Watch.jpg" class="product-image" alt="">
+                <img src="/media/products/Fastrack_Analog_Unisex_Adult_Watch.jpg" class="product-image" alt="">
                 <div class="product_details">
-                    <p class="product-name">product.prod_name</p>
+                    <p class="product-name">product.name</p>
                     <p class="product-brand">product brand</p>
                     <price>₹ XXX.XX /-</price>
                 </div>
@@ -109,7 +109,7 @@
         {% for product in products %}
             <div id="product-card" class="product">
                 <span>{{product.pk}}</span>
-                <span>{{product.prod_name}}</span>
+                <span>{{product.name}}</span>
                 <img src="{{ product.prod_image }}" alt="">
             </div>
         {% endfor %}
