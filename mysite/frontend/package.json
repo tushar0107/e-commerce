@@ -5,7 +5,7 @@
   "options": {
     "allowedHosts": [
       "localhost",
-      ".localhost"
+      "52.62.22.106"
     ],
     "proxy": "http://127.0.0.1:8000/api"
   },
