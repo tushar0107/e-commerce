@@ -219,7 +219,7 @@ def index(request):
 
 def home(request):
     #to display the home page
-    return render(request,'../templates/home.html')
+    return render(request,'home.html')
 
 
 @login_required(login_url="login/")
