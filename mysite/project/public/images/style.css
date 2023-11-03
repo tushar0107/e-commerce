@@ -1,0 +1,148 @@
+
+        body{
+          margin: 0;
+        }
+        *{
+          border: 1px solid red;
+        }
+            .banner-container{
+                display: block;
+                width: 100%;
+                margin-bottom: 24px;
+            }
+            .banner-container img{
+              display: block;
+              width: inherit;
+            }
+            .heading{
+              display: block;
+              font-size: 22px;
+              font-weight: bold;
+              text-align: center;
+            }
+            .gallery{
+              margin: 48px auto;
+            }
+            .product-gallery{
+              width: 94%;
+              margin: 16px auto;
+              display: flex;
+              justify-content: space-around;
+              align-items: centre;
+              overflow: scroll;
+              padding: 8px;
+            }
+            .card-container{
+              display: block;
+              width: 150px;
+              padding: 4px;
+              margin: 16px 8px;
+              background-color: white;
+              border-radius: 4px;
+              box-shadow: 0 0 6px #c0c0c0;
+            }
+            .card-container img{
+              width: inherit;
+              border-radius: 8px;
+              aspect-ratio: 1/1;
+            }
+            .offer-price{
+              color: #00a51e;
+            }
+            .cut-price{
+              color: #fa3d3d;
+              font-size: 12px;
+              text-decoration: line-through;
+              margin-left: 4px;
+            }
+            .addtocart{
+              display: block;
+              padding: 8px 12px;
+              background-color: #0e7dfd;
+              color: white;
+              border: none;
+              outline: none;
+              border-radius: 4px;
+            }
+            .collection{
+              display: flex;
+              justify-content: space-around;
+              align-items: stretch;
+              flex-wrap: wrap;
+              width: 90%;
+              margin: 48px auto;
+            }
+            .collection-card{
+              display: block;
+              width: 250px;
+              
+            }
+            .collection-card img{
+              width: inherit;
+              height: 180px;
+            }
+            .collection-card{
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              transition: 0.3s ease;
+            }
+            .collection-card span{
+              display: block;
+              padding: 120px 0 8px 8px;
+              background-image: linear-gradient(to top, #00000077,#00000000);
+              color: #ffffff;
+            }
+            .collection-card:hover{
+              transform: scale(1.1);
+            }
+            .card-men{
+              background-image: url('/men-fashion.jpeg');
+            }
+            .card-women{
+              background-image: url('/women-fashion.jpg');
+            }
+            .card-kid{
+              background-image: url('/kid-fashion.jpeg');
+            }
+            
+            .banner-container.mid{
+              width: 100%;
+              margin: 24px auto;
+            }
+            .women-style-gallery{
+              width: 100%;
+              margin: 48px auto;
+            }
+            .women-style-gallery > .gallery{
+              width: auto;
+              margin: 18px;
+              /* height: 400px; */
+              display: flex;
+              justify-content: space-evenly;
+              flex-wrap: wrap;
+              gap: 16px;
+            }
+            .women-style-gallery > .gallery>img{
+              width: 25%;
+            }
+            .ladies-fashion-banner{
+              width: 90%;
+              margin: 48px auto;
+              display: flex;
+              align-items: baseline;
+            }
+            .ladies-fashion-banner > img{
+              width: 30%;
+              margin-right: 40px;
+              object-fit: cover;
+            }
+            @media only screen and (max-width:800px){
+              .card-container{
+                width: 150px;
+              }
+              .card-container p{
+                font-size: 12px;
+              }
+            }
+          

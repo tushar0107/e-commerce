@@ -1,0 +1,242 @@
+*{
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+}
+
+.banner-container{
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+}
+.banner-container img{
+  display: block;
+  width: inherit;
+}
+.heading{
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+.gallery{
+  margin: 48px auto;
+}
+.product-gallery{
+  width: 94%;
+  margin: 16px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: centre;
+  overflow-x: scroll;
+  padding: 8px;
+}
+.product-gallery::-webkit-scrollbar{
+  height: 4px;
+}
+.product-gallery::-webkit-scrollbar-thumb{
+  background-color: #dadada;
+  border-radius: 4px;
+}
+.card-container{
+  display: block;
+  min-width: 150px;
+  padding: 4px;
+  margin: 16px 8px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #c0c0c0;
+  position: relative;
+  z-index: -1;
+}
+.card-container img{
+  width: 100%;
+  border-radius: 8px;
+  aspect-ratio: 1/1;
+}
+.price-button{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.offer-price{
+  display: block;
+  color: #00a51e;
+  margin: 4px 0;
+}
+.cut-price{
+  display: block;
+  color: #fa3d3d;
+  font-size: 12px;
+  text-decoration: line-through;
+  margin-left: 4px;
+}
+.addtocart{
+  display: block;
+  padding: 8px 12px;
+  background-color: #0e7dfd;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.collection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 48px auto;
+}
+.collection-card{
+  position: relative;
+  z-index: -1;
+  display: block;
+  width: 250px;
+  margin: 12px 24px;
+  overflow: hidden;
+}
+.collection-card img{
+  display: block;
+  width: 100%;
+  height: 180px;
+  transition: .3s ease;
+}
+
+.collection-card > span{
+  position: absolute;
+  bottom: 0;
+  display: block;
+  margin: 0;
+  width: inherit;
+  padding: 16px;
+  background-image: linear-gradient(to top, #00000077,#00000000);
+  color: #ffffff;
+}
+.collection-card:hover .collection-card > img{
+  transform: scale(1.2);
+}
+
+
+.banner-container.mid{
+  width: 100%;
+  margin: 24px auto;
+}
+.women-style-gallery{
+  width: 100%;
+  margin: 48px auto;
+}
+.women-style-gallery > .gallery{
+  width: auto;
+  margin: 18px;
+  /* height: 400px; */
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.women-style-gallery > .gallery>img{
+  width: 25%;
+}
+.ladies-fashion-banner{
+  width: 90%;
+  margin: 48px auto;
+  display: flex;
+  align-items: center;
+}
+.ladies-fashion-banner > img{
+  width: 30%;
+  margin-right: 40px;
+  object-fit: cover;
+}
+.banner-text > button{
+    display: block;
+    margin: 12px 0;
+    padding: 12px 24px;
+    font-size: 1em;
+    background-color: #00000000;
+    border-radius: 8px;
+    border: 2px solid rgb(59, 59, 59);
+  }
+
+#footer{
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  color: white;
+  background-color: #464646;
+}
+#footer a{
+  color: white;
+  text-decoration: none;
+}
+
+
+@media only screen and (max-width: 798px) {
+
+  .card-container{
+    width: 150px;
+  }
+  .card-container p{
+    font-size: 14px;
+  }
+
+  #products-container{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 18px;
+      
+  }
+  .product-card{
+      max-width: 200px,42%;
+      display: block;
+      padding: 12px;
+      flex: 1 1 200px;
+      flex-direction: column;
+  }
+  .product-card > img{
+      width: 150px;
+      margin: auto;
+  }
+  .product_details{
+      width: 100%;
+  }
+
+}
+@media only screen and (max-width: 630px){
+  .banner-container{
+    display: none;
+  }
+  .categorys{
+      display: none;
+  }
+  #search{
+      width: 120px;
+  }
+  
+  .ladies-fashion-banner{
+    position: relative;
+    z-index: -1;
+    margin: 48px auto;
+  }
+  .ladies-fashion-banner > img{
+      width: 80%;
+      margin: 0 auto;
+  }
+  .banner-text{
+    position: absolute;
+    bottom: 0;
+    padding: 0 16px;
+    backdrop-filter: blur(4px);
+    font-size: 1.2em;
+    background-image: linear-gradient(to top, #fffffffd, #ffffff00);
+  }
+  .addtocart > span{
+    display: none;
+  }
+  .card-container{
+    height: auto;
+  }
+}
