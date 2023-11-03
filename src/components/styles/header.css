@@ -1,0 +1,62 @@
+
+#header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    padding: 0 18px;
+}
+#logo{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 38px;
+}
+#header > span{
+    padding: 12px;
+}
+#header-nav{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    right: 18px;
+}
+#header-nav > span{
+    padding: 8px 12px;
+}
+#header-nav > #header-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
+    border: 2px solid grey;
+    background-color: #dfecff;
+    border-radius: 100px;
+}
+
+#header-search> input{
+    max-width: 200px;
+    flex: 0 1 200px;
+    display: block;
+    margin: 0 1rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+#header-search .search-btn{
+    border: 1px solid red;
+    display: block;
+    margin: .5rem auto;
+    color: black;
+    background-color: transparent;
+}
+.search-btn:hover{
+    background-color: aliceblue;
+}
+
+
+
+/* all responsive media queries are in home.css */
