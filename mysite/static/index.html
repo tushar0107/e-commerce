@@ -1,16 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <title>Home Page</title>
+    <style>
+        * {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+        }
+        #header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+        }
+        #header #logo{
+            font-size: 2rem;
+        }
+        #header #header-nav{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1rem;
+        }
+        #header-nav form {
+            padding: .5rem;
+            border: 2ps solid grey;
+            border-radius: 50px;
+        }
+        #header-nav form input, #header-nav form button{
+            padding: .2rem;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+            transition: .2s ease-in-out;
+        }
+
+
+        #header-nav form input:focus{
+            width: 10rem;
+        }
+        .header-nav-btn img{
+            width: 1.5rem;
+        }
+        .mob-nav-btn{
+            display: none;
+        }
+        #mob-nav{
+            display: none;
+
+        }
+        @media screen and (max-width:768px){
+            #header-nav form input{
+                width: 4rem;
+            }
+            .mob-nav-btn{
+                display: block;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>This is just representation page</h1>
-    <h3>Go to <a href="https://my-store-seven-xi.vercel.app/" target="_blank">My Store</a> to access this site</h3>
-    <h4>Thanks for your cooperation...</h4>
-    <h4>See you there.</h4>
-    <a href="home">go to home</a>
-    <img src="/media/products/Fastrack_Analog_Unisex_Adult_Watch.jpg" alt="" srcset="">
+    <script type="text/javascript">
+        function msgsalert() {
+            alert("{% for msg in messages %}{{msg}}{% endfor %}");
+        }
+        function toggleMobNavMenu(){
+            let menuIcon = document.getElementById('mob-nav');
+            menuIcon.style.display='block';
+        }
+    </script>
+    <div id="header">
+        <div id="logo">LOGO</div>
+        <div id="header-nav">
+            <form action="search_product" method="get" id="search-input">
+                <input type="text" className="search" name="product" placeholder="Search.."></input>
+                <button type="submit">></button>
+            </form>
+            <a href="#" class="header-nav-btn"><img src="./shopping-cart.png" alt=""></a>
+            <a href="#" class="header-nav-btn">
+                <img src="./user.png" alt="">
+            </a>
+            <a href="javascript:void(0)" onclick="toggleMobNavMenu()" class="header-nav-btn mob-nav-btn">
+                <img src="./more.png" alt="">
+            </a>
+        </div>
+    </div>
+    <ul id="mob-nav">
+        <li><a href='products'>go to products</a></li>
+        <li><a href='user_logout'>logout</a></li>
+        <li><a href=''>index</a></li>
+    </ul>
+    <h2>Sign In</h2>
+    <form method="POST" action="user_login">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+
+        <button type="submit" style="padding: 8px 12px;">Login</button>
+
+    </form>
+
+    <h2>Sign Up</h2>
+    <form method="POST" action="signup">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <!-- <input type="text" name="firstname" placeholder="First Name">
+        <input type="text" name="lastname" placeholder="Last Name">
+        <input type="email" name="email" placeholder="Email id"> -->
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit" style="padding: 8px 12px;">Login</button>
+
+    </form>
+
+    <form method="get" action="products">
+        <input type="text" name="product" placeholder="Search..">
+        <button type="submit" style="padding: 8px 12px;">Search</button>
+    </form>
 </body>
+
 </html>
